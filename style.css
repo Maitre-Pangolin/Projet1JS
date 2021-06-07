@@ -260,3 +260,29 @@ footer a:nth-child(1):hover {
   font-size: larger;
   font-style: italic;
 }
+
+#about-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: auto;
+  width: 100%;
+  top: 40vh;
+}
+
+#about-container h1 {
+  font-size: 50px;
+  transition: 0.3s ease-in-out;
+  white-space: pre-wrap;
+}
+
+#about-container h1:hover {
+  font-size: 50px;
+  color: #ef476f;
+  transform: translateY(-20px);
+}
+
+.testclass {
+  color: #ef476f;
+  transform: translateY(-20px);
+}
