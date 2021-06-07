@@ -1,0 +1,262 @@
+:root {
+  --myred: #ef476f;
+  --myyellow: #ffd166;
+  --mygreen: #06d6a0;
+  --myblue: #118ab2;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 80px;
+  align-items: center;
+  border-bottom: 4px;
+  border-bottom-style: groove;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+header h1 {
+  font-family: "Kanit";
+  font-size: 40px;
+  margin-left: 20px;
+}
+
+header button {
+  font-size: 30px;
+}
+
+.container {
+  margin-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin-top: 120px;
+}
+
+.move-zone {
+  width: 500px;
+  height: 500px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.mover {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  position: relative;
+  background-color: var(--myred);
+  left: 0;
+  top: 0;
+}
+
+.container-ex {
+  border: black 1px solid;
+  width: 500px;
+  padding: 20px 20px 0 20px;
+  margin: 0;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px rgb(110, 110, 110);
+  border-radius: 5px;
+}
+
+#move-indication {
+  font-family: "Kanit";
+  font-size: 40px;
+  margin: auto;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px auto;
+}
+
+.btn-container button,
+header button {
+  min-width: 80px;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+
+  border: 1px solid;
+  cursor: pointer;
+  font-size: larger;
+}
+
+#left,
+#remove-list,
+header button {
+  background-color: var(--myred);
+  border-color: var(--myred);
+}
+
+#left:hover,
+#remove-list:hover,
+header button:hover {
+  color: var(--myred);
+  border-color: var(--myred);
+  background-color: white;
+  box-shadow: var(--myred) 2px 2px;
+}
+
+#right {
+  background-color: var(--myyellow);
+}
+
+#right:hover {
+  color: var(--myyellow);
+  border-color: var(--myyellow);
+  background-color: white;
+  box-shadow: var(--myyellow) 2px 2px;
+}
+
+#top {
+  background-color: var(--mygreen);
+}
+
+#top:hover {
+  color: var(--mygreen);
+  border-color: var(--mygreen);
+  background-color: white;
+  box-shadow: var(--mygreen) 2px 2px;
+}
+
+#bottom,
+#add-user,
+#new-style {
+  background-color: var(--myblue);
+}
+
+#bottom:hover,
+#add-user:hover,
+#new-style:hover {
+  color: var(--myblue);
+  border-color: var(--myblue);
+  background-color: white;
+  box-shadow: var(--myblue) 2px 2px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 10px 0 0 0;
+  margin: 20px 20px;
+  border-top: #ef476f solid 2px;
+}
+
+.user {
+  color: black;
+  padding: 5px;
+  overflow: hidden;
+  margin: 5px;
+  margin-left: 0;
+  border: 1px solid white;
+  box-sizing: border-box;
+}
+
+.user:hover {
+  box-shadow: #ef476f 2px 2px;
+  border: 1px solid #ef476f;
+  color: #ef476f;
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.user-selected {
+  border-left: 3px #ef476f solid;
+  color: #ef476f;
+  font-weight: bolder;
+}
+
+.user-deletion {
+  color: white;
+}
+
+.user span {
+  color: black;
+  float: right;
+  padding: 0 5px;
+}
+
+.user span:hover {
+  color: red;
+}
+
+#selected-user,
+#font {
+  margin-left: 20px;
+}
+
+body > img {
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+footer {
+  position: fixed;
+  display: flex;
+  bottom: 0;
+  border-top-style: groove;
+  margin-top: 50px;
+  margin-left: 0;
+  width: 100%;
+  text-align: center;
+  font-family: "Kanit";
+
+  background-color: rgba(255, 255, 255, 0.8);
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+footer a:nth-child(1) {
+  font-size: 30px;
+  border: solid 4px black;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+footer a:nth-child(1):visited {
+  color: black;
+  text-decoration: none;
+}
+
+footer a:nth-child(1):hover {
+  box-shadow: midnightblue 3px 3px;
+}
+
+#about {
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 100%;
+  top: 40vh;
+  font-size: 50px;
+}
+
+#about-text {
+  position: relative;
+  text-justify: auto;
+  margin: 100px auto;
+  width: 50%;
+  top: 40vh;
+  font-size: larger;
+  font-style: italic;
+}
