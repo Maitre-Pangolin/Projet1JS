@@ -1,8 +1,8 @@
 (function () {
+  //IIFE for variable scoping
   const selectedUser = document.querySelector("#selected-user");
   let lastSelected;
   const userList = document.querySelector("#user-list");
-  const userInput = document.querySelector("input");
 
   fontList = [
     "Roboto",
@@ -15,13 +15,41 @@
     '"ZCOOL KuaiLe"',
   ];
 
+  selectedUser.textContent = usernameGenerator();
+  for (let i = 0; i < 6; i++) userCreate(); //
+
   document.querySelector("#add-user").addEventListener("click", () => {
     userCreate();
   });
 
-  document.querySelector("#new-style").addEventListener("click", () => {
-    const index = fontList.indexOf(selectedUser.style.fontFamily) + 1;
-    const font = fontList[index >= fontList.length ? 0 : index];
+  function userCreate() {
+    const newUser = document.createElement("li");
+    newUser.textContent = usernameGenerator();
+
+    const deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "x";
+    deleteBtn.addEventListener("click", function () {
+      // no arrow function need to bind this
+      this.parentElement.remove();
+    });
+    newUser.appendChild(deleteBtn);
+    newUser.classList.add("user");
+
+    newUser.addEventListener("click", function ({ target }) {
+      // Destructuring ==> explain
+      if (target != this) return; // Return on span click
+      if (lastSelected) lastSelected.classList.remove("user-selected");
+      this.classList.add("user-selected");
+      selectedUser.textContent = this.textContent.slice(0, -1); // Remove 'x' span
+      lastSelected = this;
+    });
+    userList.appendChild(newUser);
+  }
+
+  let fontIndex = 0;
+  document.querySelector("#new-font").addEventListener("click", () => {
+    fontIndex = fontIndex == fontList.length - 1 ? 0 : (fontIndex += 1);
+    const font = fontList[fontIndex];
     const fontHandle = document.querySelector("#font");
 
     selectedUser.style.fontFamily = font;
@@ -30,7 +58,7 @@
   });
 
   document.querySelector("#remove-list").addEventListener("click", () => {
-    let users = [...userList.children];
+    let users = [...userList.children]; // Spread operator ... Explain
 
     users.forEach((e, index) => {
       setTimeout(() => {
@@ -42,34 +70,8 @@
       setTimeout(() => {
         e.remove();
       }, index * 500);
-      console.log(e);
     });
   });
-
-  function userCreate() {
-    const newUser = document.createElement("li");
-    newUser.textContent = usernameGenerator();
-
-    const test = document.createElement("span");
-    test.textContent = "x";
-    test.addEventListener("click", function () {
-      this.parentElement.remove();
-    });
-    newUser.appendChild(test);
-    newUser.classList.add("user");
-
-    newUser.addEventListener("click", function ({ target }) {
-      if (target != this) return;
-      if (lastSelected) lastSelected.classList.remove("user-selected");
-      this.classList.add("user-selected");
-      selectedUser.textContent = this.textContent.slice(0, -1);
-      lastSelected = this;
-    });
-    userList.appendChild(newUser);
-  }
-
-  selectedUser.textContent = usernameGenerator();
-  for (let i = 0; i < 6; i++) userCreate(); // FOR ###########
 })();
 
 // TRANSITION
@@ -115,12 +117,28 @@ document.querySelector(".container").addEventListener("click", ({ target }) => {
   }
 });
 
-// Destroy Button
+// MOUSE PRESS / RELEASE BUTTON EFFECT
+
+document.addEventListener("mousedown", ({ target }) => {
+  if (target.tagName == "BUTTON") {
+    target.style.boxShadow = "none";
+  }
+});
+
+document.addEventListener("mouseup", ({ target }) => {
+  if (target.tagName == "BUTTON") {
+    const color = target.style.backgroundColor;
+    target.style.boxShadow = `${color} 2px 2px`;
+  }
+});
+
+// ############## Destroy Button  ##############
 
 document.querySelector("header button").addEventListener("click", () => {
   let allElements = [...document.querySelectorAll("body *")];
   const maxHeight = Math.max(...allElements.map((e) => heightDOM(e)));
   const deletionTime = 1000;
+
   while (allElements.length > 0) {
     const elem = allElements.pop();
     setTimeout(() => {
@@ -144,6 +162,7 @@ document.querySelector("header button").addEventListener("click", () => {
   }, deletionTime * (maxHeight + 1));
 
   function heightDOM(element) {
+    // RECURSIVE FUNCTION TO RETRIEVE ELEMENT HEIGHT IN DOM TREE
     if (!element.childElementCount) return 0;
 
     max = -1;
@@ -152,18 +171,5 @@ document.querySelector("header button").addEventListener("click", () => {
       if (level > max) max = level;
     });
     return max + 1;
-  }
-});
-
-document.addEventListener("mousedown", ({ target }) => {
-  if (target.tagName == "BUTTON") {
-    target.style.boxShadow = "none";
-  }
-});
-
-document.addEventListener("mouseup", ({ target }) => {
-  if (target.tagName == "BUTTON") {
-    const color = target.style.backgroundColor;
-    target.style.boxShadow = `${color} 2px 2px`;
   }
 });

@@ -137,13 +137,13 @@ header button:hover {
 
 #bottom,
 #add-user,
-#new-style {
+#new-font {
   background-color: var(--myblue);
 }
 
 #bottom:hover,
 #add-user:hover,
-#new-style:hover {
+#new-font:hover {
   color: var(--myblue);
   border-color: var(--myblue);
   background-color: white;
@@ -277,7 +277,6 @@ footer a:nth-child(1):hover {
 }
 
 #about-container h1:hover {
-  font-size: 50px;
   color: #ef476f;
   transform: translateY(-20px);
 }
